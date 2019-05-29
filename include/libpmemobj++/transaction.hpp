@@ -115,7 +115,6 @@ public:
 			auto err = add_lock(locks...);
 
 			if (err) {
-				pmemobj_tx_abort(EINVAL);
 				(void)pmemobj_tx_end();
 				throw transaction_error("failed to add lock");
 			}
@@ -404,7 +403,6 @@ public:
 		auto err = add_lock(locks...);
 
 		if (err) {
-			pmemobj_tx_abort(err);
 			(void)pmemobj_tx_end();
 			throw transaction_error(
 				"failed to add a lock to the transaction");

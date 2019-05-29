@@ -566,7 +566,7 @@ test_tx_throw_no_abort_scope(nvobj::pool<root> &pop)
 			UT_ASSERT(0);
 		}
 
-		UT_ASSERTeq(nvobj::transaction::error(), EINVAL);
+		UT_ASSERTne(nvobj::transaction::error(), 0);
 		UT_ASSERT(exception_thrown);
 		rootp->shared_mutex.unlock();
 	}
